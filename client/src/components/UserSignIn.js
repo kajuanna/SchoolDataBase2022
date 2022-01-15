@@ -1,26 +1,30 @@
 import React, { useContext } from "react";
+import { UserContext } from "./UserContext";
 import Header from "./Header";
 import { Link, useHistory } from "react-router-dom";
-import { UserContext } from "./UserContext";
-// The function will aloow user to sign
+
 const UserSignIn = () => {
-  let history = useHistory();
   let [user, setUser] = useContext(UserContext);
+  let history = useHistory();
+
   let [email, setEmail] = React.useState("");
   let [password, setPassword] = React.useState("");
   let [errors, setErrors] = React.useState(null);
+
+  // If the user has not filled out all fields they will get an error.
+
   const signIn = (e) => {
     e.preventDefault();
 
     fetch(`http://localhost:5000/api/users`, {
       method: "GET",
       mode: "cors",
+
       headers: {
         Authorization: "Basic " + btoa(`${email}:${password}`),
       },
     })
       .then((res) => {
-        console.log(res);
         if (res.status === 401) {
           return setErrors([
             {
@@ -31,7 +35,6 @@ const UserSignIn = () => {
         return res.json();
       })
       .then((userData) => {
-        console.log(userData);
         if (userData.errors) {
           return setErrors(userData.errors);
         }
@@ -51,6 +54,7 @@ const UserSignIn = () => {
   return (
     <div>
       <Header user={user} />
+
       <main>
         <div className="form--centered">
           <h2>Sign In</h2>
@@ -87,6 +91,7 @@ const UserSignIn = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
             <button className="button" type="submit">
+              {/* On submit the user will be signed in and the information will be pushed to the database */}
               Sign In
             </button>
             <button
