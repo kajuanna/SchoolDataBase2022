@@ -25,7 +25,7 @@ const UserSignIn = () => {
       },
     })
       .then((res) => {
-        if (res.status === 401) {
+        if (res.status !== 200) {
           return setErrors([
             {
               message: "User Name or Password is incorrect",
