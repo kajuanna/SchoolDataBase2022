@@ -4,7 +4,8 @@ import Header from "./Header";
 import { Link, useHistory } from "react-router-dom";
 
 const UserSignIn = () => {
-  let [user, setUser] = useContext(UserContext);
+  let value = useContext(UserContext);
+
   let history = useHistory();
 
   let [email, setEmail] = React.useState("");
@@ -39,7 +40,7 @@ const UserSignIn = () => {
           return setErrors(userData.errors);
         }
 
-        setUser({
+        value.signIn({
           id: userData.id,
           firstName: userData.firstName,
           lastName: userData.lastName,
@@ -53,7 +54,7 @@ const UserSignIn = () => {
   };
   return (
     <div>
-      <Header user={user} />
+      <Header />
 
       <main>
         <div className="form--centered">

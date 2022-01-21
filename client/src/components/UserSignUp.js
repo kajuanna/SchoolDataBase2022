@@ -8,16 +8,14 @@ const UserSignUp = () => {
   let [firstName, setFirstName] = React.useState("");
   let [lastName, setLastName] = React.useState("");
   let [email, setEmail] = React.useState("");
-  let [user, setUser] = useContext(UserContext);
+  let value = useContext(UserContext);
   let [password, setPassword] = React.useState("");
   let [confirmPassword, setConfirmPassword] = React.useState("");
   let [errors, setErrors] = React.useState(null);
   const signUp = async (e) => {
     e.preventDefault();
     //all fields should be completed if not the return alert will show
-    if (!firstName || !lastName || !email || !password || !confirmPassword) {
-      return alert("All fields are required");
-    }
+
     //checks for password match
     if (password !== confirmPassword) {
       return alert("Passwords do not match");
@@ -46,7 +44,7 @@ const UserSignUp = () => {
         if (userData.errors) {
           return setErrors(userData.errors);
         }
-        setUser({
+        value.signIn({
           id: userData.id,
           firstName: userData.firstName,
           lastName: userData.lastName,
@@ -55,11 +53,13 @@ const UserSignUp = () => {
         });
         history.push("/");
       })
-      .catch((error) => {});
+      .catch((error) => {
+        console.log(error);
+      });
   };
   return (
     <div id="root">
-      <Header user={user} />
+      <Header />
       <main>
         <div className="form--centered">
           <h2>Sign Up</h2>

@@ -5,7 +5,6 @@ const { authenticateUser } = require("../middleware/auth-user");
 
 //user get route
 router.get("/", authenticateUser, (req, res, next) => {
-  console.log("Current User ", req.currentUser);
   Users.findOne({
     where: { id: req.currentUser.id },
   })
@@ -14,7 +13,6 @@ router.get("/", authenticateUser, (req, res, next) => {
       res.json(users).end();
     })
     .catch((error) => {
-      console.log(error);
       res.status(400);
       res.json(error).end();
     });
@@ -35,12 +33,7 @@ router.post("/", (req, res, next) => {
       res.status(201).json(userInfo);
       res.end();
     })
-    // .then((user) => {
-    //   res.status(201).json(user);
-    //   res.end();
-    // })
     .catch((error) => {
-      console.log(error);
       res.status(400).json(error);
       res.end();
     });

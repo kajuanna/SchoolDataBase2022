@@ -3,7 +3,8 @@ import { useHistory } from "react-router-dom";
 import { UserContext } from "./UserContext";
 // This function creates course  & fetch api
 const CreateCourse = () => {
-  let [user] = useContext(UserContext);
+  let value = useContext(UserContext);
+  let user = value.user;
   let history = useHistory();
   let [errors, setErrors] = React.useState(null);
   let [title, setTitle] = React.useState("");

@@ -6,7 +6,8 @@ const ReactMarkdown = require("react-markdown");
 
 //Function get course detail
 const CourseDetail = () => {
-  let [user] = useContext(UserContext);
+  let value = useContext(UserContext);
+  let user = value.user;
   let { id } = useParams();
   let history = useHistory();
   let [course, setCourse] = React.useState(null);
@@ -106,7 +107,7 @@ const CourseDetail = () => {
                   <h3 className="course--detail--title">Estimated Time</h3>
                   <p>
                     {course.estimatedTime
-                      ? course.estimatedTimed
+                      ? course.estimatedTime
                       : "Estimated Time Not Provided"}
 
                     <h3 className="course--detail--title">Materials Needed</h3>

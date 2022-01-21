@@ -9,7 +9,7 @@ exports.authenticateUser = async (req, res, next) => {
 
   // This will authenticate the User by email address.
   if (credentials) {
-    let user = await User.findOne({
+    let user = await Users.findOne({
       where: { emailAddress: credentials.name },
     });
     //if email is correct authenicate user by password

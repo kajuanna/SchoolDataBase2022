@@ -6,7 +6,8 @@ import { UserContext } from "./UserContext";
 const UpdateCourse = () => {
   let { id } = useParams();
   let history = useHistory();
-  let [user] = useContext(UserContext);
+  let value = useContext(UserContext);
+  let user = value.user;
   let [updateCourseData, setUpdateCourseData] = React.useState("");
   let [errors, setErrors] = React.useState(null);
   React.useEffect(() => {

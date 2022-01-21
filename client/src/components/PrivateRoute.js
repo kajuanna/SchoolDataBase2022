@@ -3,11 +3,13 @@ import { useContext } from "react";
 import { UserContext } from "./UserContext";
 
 const PrivateRoute = ({ children, ...otherProps }) => {
-  let [user] = useContext(UserContext);
+  let value = useContext(UserContext);
   return (
     <Route
       {...otherProps}
-      render={(props) => (user !== null ? children : <Redirect to="/signin" />)}
+      render={(props) =>
+        value.user !== null ? children : <Redirect to="/signin" />
+      }
     />
   );
 };

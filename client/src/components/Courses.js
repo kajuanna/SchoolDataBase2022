@@ -1,10 +1,9 @@
 import React, { useContext } from "react";
 import Header from "./Header";
 import { Link } from "react-router-dom";
-import { UserContext } from "./UserContext";
+
 // Courses
 const Courses = () => {
-  let [user] = useContext(UserContext);
   let [courses, setCourses] = React.useState(null);
 
   React.useEffect(() => {
@@ -36,7 +35,7 @@ const Courses = () => {
 
   return (
     <div id="root">
-      <Header user={user} />
+      <Header />
       <main>
         <div className="wrap main--grid">
           {courses &&

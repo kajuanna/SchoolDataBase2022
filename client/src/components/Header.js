@@ -3,18 +3,18 @@ import { UserContext } from "./UserContext";
 import { Link } from "react-router-dom";
 
 const Header = () => {
-  let [user] = useContext(UserContext);
+  let value = useContext(UserContext);
   return (
     <header>
       <div className="wrap header--flex">
         <h1 className="header--logo">
           <a href="index.html">Courses</a>
         </h1>
-        {user ? (
+        {value.user ? (
           <nav>
             <ul className="header--signedin">
               <li>
-                Welcome, {user.firstName} {user.lastName}!
+                Welcome, {value.user.firstName} {value.user.lastName}!
               </li>
               <li>
                 <Link to="/signout">Sign Out</Link>
